@@ -1,0 +1,1 @@
+export const COLOR_PRIMARY="#4E148C"
