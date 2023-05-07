@@ -5,15 +5,13 @@ import logo from "../assets/images/logo.png"
 import splashImage from "../assets/images/splash-image.png"
 import { COLOR_PRIMARY } from "../utils/colors"
 import CustomButton from "../components/button"
+import { ROUTES_NAMES } from "../utils/constants";
 
 
 
 
 
 const SplashScreen = (props) => {
-
-
-
     return (<>
         <View style={{ flex: 1, padding: 10 }}>
 
@@ -34,11 +32,11 @@ const SplashScreen = (props) => {
 
 
 
-                <View style={{ flexDirection: "row", justifyContent: "center",marginVertical:20 }}>
-                    <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray",marginRight:7 }} />
-                    <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray",marginRight:7 }} />
+                <View style={{ flexDirection: "row", justifyContent: "center", marginVertical: 20 }}>
+                    <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray", marginRight: 7 }} />
+                    <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray", marginRight: 7 }} />
 
-                    <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: COLOR_PRIMARY,marginRight:7 }} />
+                    <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: COLOR_PRIMARY, marginRight: 7 }} />
 
                     <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray" }} />
 
@@ -46,8 +44,10 @@ const SplashScreen = (props) => {
                 </View>
 
                 <View style={{ marginBottom: 20 }}>
-                    <Text style={{ fontSize: 25, color: "black", fontWeight: "bold",
-                     textAlign: "center",fontFamily:"Poppins" }}>
+                    <Text style={{
+                        fontSize: 25, color: "black", fontWeight: "bold",
+                        textAlign: "center", fontFamily: "Poppins"
+                    }}>
 
                         Give Happiness With Every
                     </Text>
@@ -86,9 +86,13 @@ const SplashScreen = (props) => {
                             <Text>
                                 Already have anaccount?
                             </Text>
-                            <Text style={{ color: COLOR_PRIMARY, fontWeight: "700", marginLeft: 10 }}>
-                                Log In
-                            </Text>
+                            <TouchableOpacity onPress={() => {
+                                props.navigation.navigate(ROUTES_NAMES.login)
+                            }}>
+                                <Text style={{ color: COLOR_PRIMARY, fontWeight: "700", marginLeft: 10 }}>
+                                    Log In
+                                </Text>
+                            </TouchableOpacity>
 
                         </View>
                         <View style={{ height: 6, backgroundColor: COLOR_PRIMARY, width: "40%", borderRadius: 10, marginTop: 10 }} />

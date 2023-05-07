@@ -4,7 +4,7 @@ import { AMMAG_COLOR, BLACK, GRAY, WHITE } from "./colors";
 import { COLOR_PRIMARY } from "../utils/colors";
 
 
-const CustomButton = ({ text, onPress, isFilled, isFullWidth }) => {
+const CustomButton = ({ text, onPress, isFilled, isFullWidth,otp }) => {
     const isDarkMode = useColorScheme() === 'dark';
 
 
@@ -12,8 +12,9 @@ const CustomButton = ({ text, onPress, isFilled, isFullWidth }) => {
         <View style={{width:"100%",justifyContent:"center",flexDirection:"row"}}>
 
             <TouchableOpacity onPress={onPress} style={{
-                width: isFullWidth ? "100%" : "80%", backgroundColor: isFilled ? COLOR_PRIMARY : "white", borderRadius: 30,
-                paddingVertical: 15, justifyContent: "center", display: "flex", flexDirection: "row", marginTop: 20
+                width: isFullWidth ? "100%" : "80%", backgroundColor: 
+                isFilled ? COLOR_PRIMARY : "white", borderRadius: 30,
+                paddingVertical: 10, justifyContent: "center", display: "flex", flexDirection: "row", marginTop: 20
             }}>
                 <Text style={{ color: isFilled ? "white" : COLOR_PRIMARY, fontWeight: 700, fontSize: 18 }}>
                     {text}

@@ -10,6 +10,7 @@ export const ROUTES_NAMES = {
     splash: "splash",
     login: "login",
     signup: "signup",
+    otp:"otp",
     dashboard: "dashbaord",
     verifyEmail: "verifyEmail",
     myAbsents:"myAbsents",
