@@ -3,7 +3,7 @@ import { Text, TextInput, useColorScheme, View } from "react-native"
 import { BLACK, WHITE } from "./colors";
 
 
-const CustomTextInput = ({ placeholder, onChangeText, title, value, errorMessage = "",leftAlign }) => {
+const CustomTextInput = ({ placeholder, onChangeText, title, value, errorMessage = "",leftAlign,PadLeft ,BorRad}) => {
     const isDarkMode = useColorScheme() === 'dark';
 
 
@@ -25,7 +25,7 @@ const CustomTextInput = ({ placeholder, onChangeText, title, value, errorMessage
                 borderColor:"#A9A9A9",
                 
                 borderWidth: 1,
-                width: "100%", borderRadius: 13, paddingLeft: 10, fontSize: 15,
+                width: "100%", borderRadius:BorRad?BorRad: 13, paddingLeft:PadLeft?PadLeft: 10, fontSize: 15,
                 textAlign:`${leftAlign?"left":"center"}`,
                 color:"#A9A9A9"
                 // color: isDarkMode ? WHITE : BLACK

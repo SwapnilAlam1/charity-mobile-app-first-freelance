@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { View, Image, Text, StyleSheet, TextInput } from "react-native"
+import { View, Image, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native"
 import { COLOR_PRIMARY } from "../utils/colors"
 import logo from "../assets/images/OtpLogo.png"
 import CustomButton from '../components/button';
+import { ROUTES_NAMES } from '../utils/constants';
 
-const OtpScreen = () => {
+const OtpScreen = (props) => {
 
     const [otp, setOtp] = useState('');
     const inputRef1 = useRef(null);
@@ -146,13 +147,19 @@ const OtpScreen = () => {
                     ref={inputRef4}
                 />
             </View>
-            <View style={{ marginTop: "10%" }}>
+            <View style={{ marginTop: "10%",justifyContent:"center",alignItems:"center" ,flexDirection:"row"}}>
                 <Text style={{ color: "white", textAlign: "center" }}>
                     Don't get the code?
-                    <Text style={{ color: "white", fontWeight: "bold" }}>
+                </Text>
+
+                    <TouchableOpacity
+                    
+                   
+                    >
+                    <Text style={{ color: "white", fontWeight: "bold",textAlign:"center" }}>
                         {" "}Resend.
                     </Text>
-                </Text>
+                    </TouchableOpacity>
             </View>
             <View style={{ marginTop: "40%" }}>
                 <CustomButton isFilled={false} isFullWidth={true} otp={true} text="Next" onPress={() => {

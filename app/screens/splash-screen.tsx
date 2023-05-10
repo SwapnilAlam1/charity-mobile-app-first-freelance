@@ -80,7 +80,13 @@ const SplashScreen = (props) => {
 
 
                     <View style={{ alignItems: "center" }}>
-                        <CustomButton text="Get Started" onPress={() => { }} isFilled isFullWidth={false} />
+                        <CustomButton text="Get Started" 
+                         onPress={()=>{
+                            props.navigation.navigate(ROUTES_NAMES.home)
+        
+                            }}
+                        
+                        isFilled isFullWidth={false} />
 
                         <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 20 }}>
                             <Text>

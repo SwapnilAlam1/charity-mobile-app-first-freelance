@@ -16,6 +16,7 @@ import UserDetail from "../screens/user-detail"
 import DashboardNavigation from "./drawer-navigator"
 import SplashScreen from "../screens/splash-screen"
 import OtpScreen from "../screens/otp"
+import home from "../screens/home"
 
 const Stack = createNativeStackNavigator()
 
@@ -35,6 +36,7 @@ const MyStack = () => {
                     <Stack.Screen name={ROUTES_NAMES.signup} component={SignUp} />
 
                     <Stack.Screen name={ROUTES_NAMES.otp} component={OtpScreen} />
+                    <Stack.Screen name={ROUTES_NAMES.home} component={home} />
                     <Stack.Screen name={ROUTES_NAMES.verifyEmail} component={VerifyEmail} />
                     <Stack.Screen name={ROUTES_NAMES.myAbsents} component={MyAbsents} />
                     <Stack.Screen name={ROUTES_NAMES.myLateComings} component={MyLateComings} />

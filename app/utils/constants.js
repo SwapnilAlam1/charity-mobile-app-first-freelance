@@ -11,6 +11,7 @@ export const ROUTES_NAMES = {
     login: "login",
     signup: "signup",
     otp:"otp",
+    home:"home",
     dashboard: "dashbaord",
     verifyEmail: "verifyEmail",
     myAbsents:"myAbsents",
