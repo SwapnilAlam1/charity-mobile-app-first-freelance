@@ -16,8 +16,9 @@ import timer from '../assets/images/timer.png';
 import {COLOR_PRIMARY} from '../utils/colors';
 import CustomButton from '../components/button';
 import {useNavigation} from '@react-navigation/native';
+import { ROUTES_NAMES } from '../utils/constants';
 
-const compaign = () => {
+const compaign = (props) => {
   const navigation = useNavigation();
   const CompaignCard = () => {
     return (
@@ -232,7 +233,7 @@ const compaign = () => {
         <CustomButton
           text="Donate Now"
           onPress={() => {
-            // props.navigation.navigate(ROUTES_NAMES.home)
+            props.navigation.navigate(ROUTES_NAMES.donationmethod)
           }}
           isFilled
           isFullWidth={false}

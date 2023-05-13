@@ -18,6 +18,8 @@ import SplashScreen from "../screens/splash-screen"
 import OtpScreen from "../screens/otp"
 import home from "../screens/home"
 import tabnavigation from "./bottomtab-navigation"
+import donationmethod from "../screens/donationmethod"
+import addCards from "../screens/addcards"
 
 const Stack = createNativeStackNavigator()
 
@@ -39,6 +41,8 @@ const MyStack = () => {
                     <Stack.Screen name={ROUTES_NAMES.otp} component={OtpScreen} />
                     {/* <Stack.Screen name={ROUTES_NAMES.home} component={home} /> */}
                     <Stack.Screen name={ROUTES_NAMES.home} component={tabnavigation} />
+                    <Stack.Screen name={ROUTES_NAMES.donationmethod} component={donationmethod} />
+                    <Stack.Screen name={ROUTES_NAMES.addcards} component={addCards} />
                     <Stack.Screen name={ROUTES_NAMES.verifyEmail} component={VerifyEmail} />
                     <Stack.Screen name={ROUTES_NAMES.myAbsents} component={MyAbsents} />
                     <Stack.Screen name={ROUTES_NAMES.myLateComings} component={MyLateComings} />

@@ -13,6 +13,8 @@ export const ROUTES_NAMES = {
     otp:"otp",
     home:"home",
     dashboard: "dashbaord",
+    donationmethod: "donationmethod",
+    addcards: "addcards",
     verifyEmail: "verifyEmail",
     myAbsents:"myAbsents",
     myLateComings:"myLateComings",
