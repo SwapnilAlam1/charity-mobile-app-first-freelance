@@ -5,6 +5,7 @@ import {
   Text,
   View,
   ProgressBarAndroid,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 
@@ -17,14 +18,17 @@ import timer from '../assets/images/timer.png';
 import { COLOR_PRIMARY } from '../utils/colors';
 import { TextInput } from 'react-native-gesture-handler';
 import CustomTextInput from '../components/input';
+import backicon from '../assets/images/noti.png';
+import notificationicon from '../assets/images/backscreen.png';
+import { useNavigation } from '@react-navigation/native';
 
 const cardData = [
   {
     id: 1,
     title: 'Card Title 1',
     image: require('../assets/images/Rectangle5.png'),
-    textTopLeft: 'Top',
-    textBottomLeft: 'Donate now',
+    textTopLeft: 'Children day',
+    textBottomLeft: 'Book a seat',
     textBottomRight: 'helps us to make the',
     textBottomRight1: 'bright future of these',
     textBottomRight2: 'souls',
@@ -33,32 +37,79 @@ const cardData = [
     id: 2,
     title: 'Card Title 2',
     image: require('../assets/images/Rectangle7.png'),
-    textTopLeft: 'Top',
-    textBottomLeft: 'Donate now',
+    textTopLeft: 'World day',
+    textBottomLeft: 'Book a seat',
     textBottomRight: 'helps us to make the',
     textBottomRight1: 'bright future of these',
     textBottomRight2: 'souls',
   },
 ];
+
+const cardData2 = [
+  {
+    id: 1,
+    title: 'Card Title 1',
+    image: require('../assets/images/food.png'),
+    textTopLeft: 'World Food Day',
+    textBottomLeft: 'Explore',
+    textBottomRight: 'helps us to make the',
+    textBottomRight1: 'bright future of these',
+    textBottomRight2: 'souls',
+  },
+  {
+    id: 2,
+    title: 'Card Title 2',
+    image: require('../assets/images/food2.png'),
+    textTopLeft: 'Animal Day',
+    textBottomLeft: 'Explore',
+    textBottomRight: 'helps us to make the',
+    textBottomRight1: 'bright future of these',
+    textBottomRight2: 'souls',
+  },
+];
+
+const cardData3 = [
+  {
+    id: 1,
+    title: 'Card Title 1',
+    image: require('../assets/images/womens.png'),
+    textTopLeft: 'Womens Day',
+    textBottomLeft: 'Explore',
+    textBottomRight: 'helps us to make the',
+    textBottomRight1: 'bright future of these',
+    textBottomRight2: 'souls',
+  },
+  {
+    id: 2,
+    title: 'Card Title 2',
+    image: require('../assets/images/cancer.png'),
+    textTopLeft: 'Cancer Day',
+    textBottomLeft: 'Explore',
+    textBottomRight: 'helps us to make the',
+    textBottomRight1: 'bright future of these',
+    textBottomRight2: 'souls',
+  },
+];
+
 const categorycardData = [
   {
     id: 1,
-    image: require('../assets/images/Rectangle22.png'),
+    image: require('../assets/images/spons1.png'),
     textTopLeft: 'All',
   },
   {
     id: 1,
-    image: require('../assets/images/Rectangle23.png'),
+    image: require('../assets/images/spons2.png'),
     textTopLeft: 'Animals',
   },
   {
     id: 1,
-    image: require('../assets/images/Rectangle24.png'),
+    image: require('../assets/images/spons3.png'),
     textTopLeft: 'Children',
   },
   {
     id: 1,
-    image: require('../assets/images/Rectangle25.png'),
+    image: require('../assets/images/spons4.png'),
     textTopLeft: 'Education',
   },
 ];
@@ -69,9 +120,9 @@ const Card = ({ item }) => {
       <Image style={styles.cardImage} source={item.image} />
       <Text style={styles.textTopLeft}>{item.textTopLeft}</Text>
       <Text style={styles.textBottomLeft}>{item.textBottomLeft}</Text>
-      <Text style={styles.textBottomRight}>{item.textBottomRight}</Text>
+      {/* <Text style={styles.textBottomRight}>{item.textBottomRight}</Text>
       <Text style={styles.textBottomRight1}>{item.textBottomRight1}</Text>
-      <Text style={styles.textBottomRight2}>{item.textBottomRight2}</Text>
+      <Text style={styles.textBottomRight2}>{item.textBottomRight2}</Text> */}
     </View>
   );
 };
@@ -112,7 +163,8 @@ const CategoryCard = ({ item }) => {
   );
 };
 
-const home = () => {
+const Events = () => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -127,75 +179,31 @@ const home = () => {
         flexDirection: 'row',
         padding: 5,
       }}>
-
-
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image source={profile} />
-          <View
-            style={{
-              flexDirection: 'column',
-              alignItems: 'center',
-              paddingLeft: 5,
-            }}>
-            <Text style={{ fontWeight: '600', fontSize: 12 }}>
-              Hi Katherine
-            </Text>
-            <Text style={{ fontWeight: '600', fontSize: 12 }}>Welcome</Text>
-          </View>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image source={logo} />
-          <View style={{ paddingLeft: 10 }}>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 15,
-                color: COLOR_PRIMARY,
-                textAlign: 'center',
-              }}>
-              TREE
-            </Text>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 15,
-                color: COLOR_PRIMARY,
-              }}>
-              HUGGERS
-            </Text>
-          </View>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={{ marginRight: 7 }} source={drawer} />
-          <Image source={notification} />
-        </View>
-
+        <TouchableOpacity onPress={() => {
+          navigation.goBack();
+        }}>
+          <Image source={notificationicon} />
+        </TouchableOpacity>
+        <Text style={{
+          color: 'black',
+          fontSize: 20,
+          fontWeight: "bold"
+        }}>
+          Events
+        </Text>
+        <Image source={backicon} />
       </View>
-      <View style={{ position: 'relative', paddingVertical: 20 }}>
-        <CustomTextInput
-          PadLeft={35}
-          BorRad={25}
-          placeholder="Search"
-          title="Enter Email"
-          leftAlign={true}
-        />
-        <Image
-          style={{ position: 'absolute', top: 35, left: 8 }}
-          source={search}
-        />
-      </View>
-
-
       <ScrollView
         showsVerticalScrollIndicator={false}
-
       >
-
-
         <View style={styles.container}>
+          <View>
+            <Text style={{ color: "black", fontSize: 20, paddingVertical: "3%",fontWeight:"bold" }}>
+              Upcoming Events
+            </Text>
+          </View>
           <ScrollView horizontal={true}
             showsHorizontalScrollIndicator={false}
-
           >
             {cardData.map(item => (
               <Card key={item.id} item={item} />
@@ -209,11 +217,11 @@ const home = () => {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text
               style={{
-                fontWeight: 'bold',
                 fontSize: 20,
-                color:"black"
+                color: "black",
+                fontWeight:"bold"
               }}>
-              Categories
+              Our Sponsors
             </Text>
             <Text
               style={{
@@ -227,7 +235,6 @@ const home = () => {
           <View style={[styles.container, { paddingVertical: 10 }]}>
             <ScrollView horizontal={true}
               showsHorizontalScrollIndicator={false}
-
             >
               {categorycardData.map(item => (
                 <CategoryCard key={item.id} item={item} />
@@ -235,86 +242,32 @@ const home = () => {
             </ScrollView>
           </View>
         </View>
-        <View style={{ paddingVertical: 10 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 20,
-                color:"black"
-
-              }}>
-              Compaigns
-            </Text>
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 15,
-                color: '#A8A8A8',
-              }}>
-              See all
+        <View style={styles.container}>
+          <View>
+            <Text style={{ color: "black", fontSize: 20, paddingVertical: "3%",fontWeight:"bold" }}>
+              Present Events
             </Text>
           </View>
+          <ScrollView horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            {cardData2.map(item => (
+              <Card key={item.id} item={item} />
+            ))}
+          </ScrollView>
         </View>
-        <View style={[styles.container3, { marginBottom: 5 }]}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.row}>
-              <View style={styles.halfCard}>
-                <View
-                  style={{
-                    backgroundColor: COLOR_PRIMARY,
-                    // position: 'absolute',
-                    flexDirection: 'row',
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: 100,
-                    borderRadius: 20,
-                    right: 22,
-                    top: 10,
-                    zIndex: 9999,
-                    position: "absolute"
-
-                  }}>
-                  <Image source={timer} style={{ marginRight: 5 }} />
-                  <Text style={{ color: 'white', fontSize: 13, fontWeight: "300" }}>4 days a left</Text>
-                </View>
-                <CompaignCard
-                  title="Save Animals"
-                  subtitle="Help Us to Save Pandas"
-                  progress={0.7}
-                  imageSource={{
-                    uri: 'https://source.unsplash.com/random/800x800',
-                  }}
-                />
-              </View>
-              <View style={styles.halfCard}>
-                <View
-                  style={{
-                    backgroundColor: COLOR_PRIMARY,
-                    // position: 'absolute',
-                    flexDirection: 'row',
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: 100,
-                    borderRadius: 20,
-                    right: 22,
-                    top: 10,
-                    zIndex: 9999,
-                    position: "absolute"
-                  }}>
-                  <Image source={timer} style={{ marginRight: 5 }} />
-                  <Text style={{ color: 'white', fontSize: 13, fontWeight: "300" }}>4 day a left</Text>
-                </View>
-                <CompaignCard
-                  title="Humanity"
-                  subtitle="Help Victor to Control Hunger"
-                  progress={0.4}
-                  imageSource={{
-                    uri: 'https://source.unsplash.com/random/800x800',
-                  }}
-                />
-              </View>
-            </View>
+        <View style={styles.container}>
+          <View>
+            <Text style={{ color: "black", fontSize: 20, paddingVertical: "3%",fontWeight:"bold" }}>
+              Previous Events
+            </Text>
+          </View>
+          <ScrollView horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          >
+            {cardData3.map(item => (
+              <Card key={item.id} item={item} />
+            ))}
           </ScrollView>
         </View>
       </ScrollView>
@@ -322,7 +275,7 @@ const home = () => {
   );
 };
 
-export default home;
+export default Events;
 
 const styles = StyleSheet.create({
   container: {
@@ -344,12 +297,14 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   textTopLeft: {
-    backgroundColor: COLOR_PRIMARY,
+    // backgroundColor: COLOR_PRIMARY,
     position: 'absolute',
     top: 0,
     left: 7,
-    color: '#fff',
+    color: 'white',
     fontSize: 20,
+    padding: "2%",
+    fontWeight: "bold"
   },
   textBottomLeft: {
     backgroundColor: COLOR_PRIMARY,

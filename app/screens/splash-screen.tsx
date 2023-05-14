@@ -27,20 +27,14 @@ const SplashScreen = (props) => {
                 <Text style={{ fontWeight: "bold", fontSize: 20, color: COLOR_PRIMARY }}>SKIP</Text>
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
-
-                <Image source={splashImage} style={{ marginTop: "20%" }} />
-
-
-
+                <View style={{ justifyContent: "center", alignItems: "center" }}>
+                    <Image source={splashImage} style={{ marginTop: "20%" }} />
+                </View>
                 <View style={{ flexDirection: "row", justifyContent: "center", marginVertical: 20 }}>
                     <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray", marginRight: 7 }} />
                     <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray", marginRight: 7 }} />
-
                     <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: COLOR_PRIMARY, marginRight: 7 }} />
-
                     <View style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: "gray" }} />
-
-
                 </View>
 
                 <View style={{ marginBottom: 20 }}>
@@ -78,18 +72,17 @@ const SplashScreen = (props) => {
                         rise with you.
                     </Text>
 
-
                     <View style={{ alignItems: "center" }}>
-                        <CustomButton text="Get Started" 
-                         onPress={()=>{
-                            props.navigation.navigate(ROUTES_NAMES.home)
-        
+                        <CustomButton text="Get Started"
+                            onPress={() => {
+                                props.navigation.navigate(ROUTES_NAMES.home)
+
                             }}
-                        
-                        isFilled isFullWidth={false} />
+
+                            isFilled isFullWidth={false} />
 
                         <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 20 }}>
-                            <Text>
+                            <Text style={{ color: "black" }}>
                                 Already have anaccount?
                             </Text>
                             <TouchableOpacity onPress={() => {

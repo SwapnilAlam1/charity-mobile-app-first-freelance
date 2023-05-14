@@ -13,9 +13,9 @@ import backicon from '../assets/images/noti.png';
 import notificationicon from '../assets/images/backscreen.png';
 import CompaignCardicon from '../assets/images/CompaignCard.png';
 import timer from '../assets/images/timer.png';
-import {COLOR_PRIMARY} from '../utils/colors';
+import { COLOR_PRIMARY } from '../utils/colors';
 import CustomButton from '../components/button';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { ROUTES_NAMES } from '../utils/constants';
 
 const compaign = (props) => {
@@ -41,8 +41,8 @@ const compaign = (props) => {
             zIndex: 9999,
             position: 'absolute',
           }}>
-          <Image source={timer} style={{marginRight: 5}} />
-          <Text style={{color: 'white', fontSize: 13, fontWeight: '300'}}>
+          <Image source={timer} style={{ marginRight: 5 }} />
+          <Text style={{ color: 'white', fontSize: 13, fontWeight: '300' }}>
             4 Days left
           </Text>
         </View>
@@ -101,31 +101,32 @@ const compaign = (props) => {
     <View
       style={{
         padding: 15,
+        paddingBottom:60
       }}>
+
+      <View style={{
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        padding: 5,
+      }}>
+        <TouchableOpacity onPress={() => {
+          navigation.goBack();
+        }}>
+          <Image source={notificationicon} />
+        </TouchableOpacity>
+        <Text style={{
+          color: 'black',
+          fontSize: 20,
+          fontWeight: "bold"
+        }}>
+          Compaigns
+
+        </Text>
+        <Image source={backicon} />
+      </View>
+
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 5,
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <Image source={notificationicon} />
-          </TouchableOpacity>
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 20,
-            }}>
-            Compaigns
-          </Text>
-          <Image source={backicon} />
-        </View>
+
         <View
           style={{
             paddingVertical: 10,
@@ -148,11 +149,11 @@ const compaign = (props) => {
             style={{
               color: '#A8A8A8',
               fontSize: 20,
-              paddingVertical:5
+              paddingVertical: 5
             }}>
             Save Animals
           </Text>
-          <View style={{flex: 1, flexDirection: 'row',paddingVertical:5}}>
+          <View style={{ flex: 1, flexDirection: 'row', paddingVertical: 5 }}>
             <TouchableOpacity style={styles.textBottomLeft}>
               <Text
                 style={{
@@ -162,7 +163,7 @@ const compaign = (props) => {
                 Animals
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.textBottomLeft, {marginLeft: 2}]}>
+            <TouchableOpacity style={[styles.textBottomLeft, { marginLeft: 2 }]}>
               <Text
                 style={{
                   color: 'white',
@@ -171,7 +172,7 @@ const compaign = (props) => {
                 Rare
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.textBottomLeft, {marginLeft: 2}]}>
+            <TouchableOpacity style={[styles.textBottomLeft, { marginLeft: 2 }]}>
               <Text
                 style={{
                   color: 'white',
@@ -192,9 +193,9 @@ const compaign = (props) => {
               flex: 1,
               flexDirection: 'row',
               justifyContent: 'space-between',
-              paddingVertical:8
+              paddingVertical: 8
             }}>
-            <Text style={{color: 'black'}}>Target:$800,000</Text>
+            <Text style={{ color: 'black' }}>Target:$800,000</Text>
             <Text
               style={{
                 color: '#4E148C',
@@ -203,12 +204,12 @@ const compaign = (props) => {
             </Text>
           </View>
           <View
-          style={{
-            borderWidth:1,
-            color:"#A8A8A8",
-            opacity:0.2,
-            marginVertical:5
-          }}
+            style={{
+              borderWidth: 1,
+              color: "#A8A8A8",
+              opacity: 0.2,
+              marginVertical: 5
+            }}
           >
 
           </View>
@@ -217,11 +218,13 @@ const compaign = (props) => {
               color: 'black',
               fontWeight: 'bold',
               fontSize: 20,
-              paddingVertical:8
+              paddingVertical: 8
             }}>
             About Compaign
           </Text>
-          <Text>
+          <Text style={{
+            color: "black"
+          }}>
             Lorem ipsum dolor sit amet consectetur. Justo nunc egestas pretium
             tortor ullamcorper eget leo auctor. Ipsum nibh tincidunt dui
             tincidunt. Viverra sed pulvinar potenti vel nibh phasellus fermentum

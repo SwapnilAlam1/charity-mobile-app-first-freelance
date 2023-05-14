@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {COLOR_PRIMARY} from '../utils/colors';
+import { COLOR_PRIMARY } from '../utils/colors';
 
 import backarrow from '../assets/images/backarrowrmethod.png';
 import paypal from '../assets/images/paypal.png';
@@ -15,12 +15,12 @@ import Wallet from '../assets/images/Wallet.png';
 import ApplePay from '../assets/images/ApplePay.png';
 import SavedCard from '../assets/images/SavedCard.png';
 import addCard from '../assets/images/addCard.png';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const donationmethod = () => {
   const navigation = useNavigation();
   return (
-    <View style={{backgroundColor: '#F5F5F5', flex: 1}}>
+    <View style={{ backgroundColor: '#F5F5F5', flex: 1, paddingBottom: 20 }}>
       <View
         style={{
           flexDirection: 'row',
@@ -35,7 +35,7 @@ const donationmethod = () => {
           }}>
           <Image source={backarrow} />
         </TouchableOpacity>
-        <Text style={{color: 'white', fontSize: 20}}>Donation Method</Text>
+        <Text style={{ color: 'white', fontSize: 20 }}>Donation Method</Text>
         <View></View>
 
         {/* </View> */}
@@ -278,16 +278,16 @@ const donationmethod = () => {
               marginVertical: '5%',
             }}></View>
           <TouchableOpacity
-          onPress={()=>{
-            navigation.navigate("addcards")
-          }}
+            onPress={() => {
+              navigation.navigate("addcards")
+            }}
             style={{
               flexDirection: 'row',
               paddingBottom: 30,
-              
+
             }}>
             <Image style={{}} source={addCard} />
-            <Text style={{color: 'black', fontWeight: 'bold', fontSize: 20}}>
+            <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>
               Add Cards
             </Text>
           </TouchableOpacity>
