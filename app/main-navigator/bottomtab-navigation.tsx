@@ -26,6 +26,7 @@ import { COLOR_PRIMARY } from '../utils/colors';
 import compaign from '../screens/compaign';
 import Events from '../screens/events';
 import Profile from '../screens/profile';
+import Messages from '../screens/messages';
 
 const tabnavigation = () => {
   return (
@@ -84,7 +85,7 @@ const tabnavigation = () => {
         }}
       />
 
-      <Tab.Screen name="Message" component={Events}
+      <Tab.Screen name="Message" component={Messages}
         options={{
           tabBarLabel: '',
           tabBarLabelStyle: { color: COLOR_PRIMARY },
