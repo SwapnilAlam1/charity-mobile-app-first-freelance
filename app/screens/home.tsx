@@ -5,8 +5,10 @@ import {
   Text,
   View,
   ProgressBarAndroid,
+  TouchableOpacity,
+  Modal,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 import logo from '../assets/images/logo.png';
 import profile from '../assets/images/profile.png';
@@ -14,9 +16,11 @@ import drawer from '../assets/images/drawer.png';
 import notification from '../assets/images/noti.png';
 import search from '../assets/images/search.png';
 import timer from '../assets/images/timer.png';
-import { COLOR_PRIMARY } from '../utils/colors';
-import { TextInput } from 'react-native-gesture-handler';
+import {COLOR_PRIMARY} from '../utils/colors';
+import {TextInput} from 'react-native-gesture-handler';
 import CustomTextInput from '../components/input';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import CustomButton from '../components/button';
 
 const cardData = [
   {
@@ -63,7 +67,7 @@ const categorycardData = [
   },
 ];
 
-const Card = ({ item }) => {
+const Card = ({item}) => {
   return (
     <View style={styles.cardContainer}>
       <Image style={styles.cardImage} source={item.image} />
@@ -76,10 +80,10 @@ const Card = ({ item }) => {
   );
 };
 
-const CompaignCard = ({ title, subtitle, progress, imageSource }) => {
+const CompaignCard = ({title, subtitle, progress, imageSource}) => {
   return (
     <View style={styles.card}>
-      <Image style={{ height: '60%', width: '100%' }} source={imageSource} />
+      <Image style={{height: '60%', width: '100%'}} source={imageSource} />
       <View style={styles.cardText}>
         <Text style={styles.cardTitle}>{title}</Text>
         <Text style={styles.cardSubtitle}>{subtitle}</Text>
@@ -87,15 +91,15 @@ const CompaignCard = ({ title, subtitle, progress, imageSource }) => {
           styleAttr="Horizontal"
           indeterminate={false}
           progress={progress}
+          color={COLOR_PRIMARY}
         />
-        <Text style={{ color: "#9C2CF3" }}>$450,000 out of $800,000</Text>
-
+        <Text style={{color: '#9C2CF3'}}>$450,000 out of $800,000</Text>
       </View>
     </View>
   );
 };
 
-const CategoryCard = ({ item }) => {
+const CategoryCard = ({item}) => {
   return (
     <View
       style={{
@@ -107,29 +111,38 @@ const CategoryCard = ({ item }) => {
       <View>
         <Image style={{}} source={item.image} />
       </View>
-      <Text style={{ fontWeight: 'bold', marginTop: 3 }}>{item.textTopLeft}</Text>
+      <Text style={{fontWeight: 'bold', marginTop: 3}}>{item.textTopLeft}</Text>
     </View>
   );
 };
 
-const home = () => {
+const home = props => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisibleone, setModalVisibleone] = useState(false);
+  const [imgurl, setimgurl] = useState(null);
+  const [imgurlone, setimgurlone] = useState(null);
+  const [progressvalue, setprogressvalue] = useState(null);
+  const [Textvalue, setTextvalue] = useState(null);
+  const [Textvalueone, setTextvalueone] = useState(null);
+
   return (
     <View
       style={{
         padding: '5%',
         backgroundColor: '#FFFFFF',
         height: '100%',
-
       }}>
-
-      <View style={{
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        padding: 5,
-      }}>
-
-
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <View
+        style={{
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          padding: 5,
+        }}>
+        <TouchableOpacity
+          onPress={() => {
+            props.navigation.navigate('Profile');
+          }}
+          style={{flexDirection: 'row', alignItems: 'center'}}>
           <Image source={profile} />
           <View
             style={{
@@ -137,15 +150,13 @@ const home = () => {
               alignItems: 'center',
               paddingLeft: 5,
             }}>
-            <Text style={{ fontWeight: '600', fontSize: 12 }}>
-              Hi Katherine
-            </Text>
-            <Text style={{ fontWeight: '600', fontSize: 12 }}>Welcome</Text>
+            <Text style={{fontWeight: '600', fontSize: 12}}>Hi Katherine</Text>
+            <Text style={{fontWeight: '600', fontSize: 12}}>Welcome</Text>
           </View>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        </TouchableOpacity>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Image source={logo} />
-          <View style={{ paddingLeft: 10 }}>
+          <View style={{paddingLeft: 10}}>
             <Text
               style={{
                 fontWeight: 'bold',
@@ -165,13 +176,12 @@ const home = () => {
             </Text>
           </View>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={{ marginRight: 7 }} source={drawer} />
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Image style={{marginRight: 7}} source={drawer} />
           <Image source={notification} />
         </View>
-
       </View>
-      <View style={{ position: 'relative', paddingVertical: 20 }}>
+      <View style={{position: 'relative', paddingVertical: 20}}>
         <CustomTextInput
           PadLeft={35}
           BorRad={25}
@@ -180,23 +190,14 @@ const home = () => {
           leftAlign={true}
         />
         <Image
-          style={{ position: 'absolute', top: 35, left: 8 }}
+          style={{position: 'absolute', top: 35, left: 8}}
           source={search}
         />
       </View>
 
-
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-
-      >
-
-
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-          <ScrollView horizontal={true}
-            showsHorizontalScrollIndicator={false}
-
-          >
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             {cardData.map(item => (
               <Card key={item.id} item={item} />
             ))}
@@ -206,12 +207,12 @@ const home = () => {
           style={{
             paddingVertical: 10,
           }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text
               style={{
                 fontWeight: 'bold',
                 fontSize: 20,
-                color:"black"
+                color: 'black',
               }}>
               Categories
             </Text>
@@ -224,25 +225,31 @@ const home = () => {
               See all
             </Text>
           </View>
-          <View style={[styles.container, { paddingVertical: 10 }]}>
-            <ScrollView horizontal={true}
-              showsHorizontalScrollIndicator={false}
-
-            >
+          <View style={[styles.container, {paddingVertical: 10}]}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
               {categorycardData.map(item => (
+                <TouchableOpacity 
+                onPress={()=>{
+                  setimgurlone(item?.image)
+                  setTextvalueone(item?.textTopLeft)
+                  setModalVisibleone(true)
+                }}
+                >
                 <CategoryCard key={item.id} item={item} />
+                </TouchableOpacity>
               ))}
             </ScrollView>
           </View>
         </View>
-        <View style={{ paddingVertical: 10 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{paddingVertical: 10}}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text
               style={{
                 fontWeight: 'bold',
                 fontSize: 20,
-                color:"black"
-
+                color: 'black',
               }}>
               Compaigns
             </Text>
@@ -256,27 +263,36 @@ const home = () => {
             </Text>
           </View>
         </View>
-        <View style={[styles.container3, { marginBottom: 5 }]}>
+        <View style={[styles.container3, {marginBottom: 5}]}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.row}>
-              <View style={styles.halfCard}>
+              <TouchableOpacity
+                style={styles.halfCard}
+                onPress={() => {
+                  setModalVisible(true);
+                  setimgurl('https://source.unsplash.com/random/800x800');
+                  setprogressvalue(0.7);
+                  setTextvalue('Save Animals');
+                }}>
                 <View
                   style={{
                     backgroundColor: COLOR_PRIMARY,
                     // position: 'absolute',
                     flexDirection: 'row',
-                    justifyContent: "center",
-                    alignItems: "center",
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     width: 100,
                     borderRadius: 20,
                     right: 22,
                     top: 10,
                     zIndex: 9999,
-                    position: "absolute"
-
+                    position: 'absolute',
                   }}>
-                  <Image source={timer} style={{ marginRight: 5 }} />
-                  <Text style={{ color: 'white', fontSize: 13, fontWeight: "300" }}>4 days a left</Text>
+                  <Image source={timer} style={{marginRight: 5}} />
+                  <Text
+                    style={{color: 'white', fontSize: 13, fontWeight: '300'}}>
+                    4 days a left
+                  </Text>
                 </View>
                 <CompaignCard
                   title="Save Animals"
@@ -286,24 +302,34 @@ const home = () => {
                     uri: 'https://source.unsplash.com/random/800x800',
                   }}
                 />
-              </View>
-              <View style={styles.halfCard}>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.halfCard}
+                onPress={() => {
+                  setModalVisible(true);
+                  setimgurl('https://source.unsplash.com/random/800x800');
+                  setprogressvalue(0.3);
+                  setTextvalue('Humanity');
+                }}>
                 <View
                   style={{
                     backgroundColor: COLOR_PRIMARY,
                     // position: 'absolute',
                     flexDirection: 'row',
-                    justifyContent: "center",
-                    alignItems: "center",
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     width: 100,
                     borderRadius: 20,
                     right: 22,
                     top: 10,
                     zIndex: 9999,
-                    position: "absolute"
+                    position: 'absolute',
                   }}>
-                  <Image source={timer} style={{ marginRight: 5 }} />
-                  <Text style={{ color: 'white', fontSize: 13, fontWeight: "300" }}>4 day a left</Text>
+                  <Image source={timer} style={{marginRight: 5}} />
+                  <Text
+                    style={{color: 'white', fontSize: 13, fontWeight: '300'}}>
+                    4 day a left
+                  </Text>
                 </View>
                 <CompaignCard
                   title="Humanity"
@@ -313,11 +339,74 @@ const home = () => {
                     uri: 'https://source.unsplash.com/random/800x800',
                   }}
                 />
-              </View>
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </View>
       </ScrollView>
+
+      <Modal visible={modalVisible} animationType="fade" transparent={true}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>{Textvalue}</Text>
+            <Image
+              source={{
+                uri: imgurl,
+              }}
+              style={styles.modalImage}
+              resizeMode="contain"
+            />
+            <ProgressBarAndroid
+              styleAttr="Horizontal"
+              indeterminate={false}
+              progress={progressvalue}
+              color={COLOR_PRIMARY}
+            />
+
+            <Text style={styles.progressText}>{`${Math.round(
+              progressvalue * 100,
+            )}%`}</Text>
+            <CustomButton
+              text="Close"
+              onPress={() => {
+                setModalVisible(false);
+              }}
+              isFilled
+              isFullWidth={false}
+            />
+          </View>
+        </View>
+      </Modal>
+      <Modal visible={modalVisibleone} animationType="fade" transparent={true}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={{fontWeight: 'bold', fontSize: 20,
+          marginBottom:4
+          }}>{Textvalueone}</Text>
+            <Image
+              source={imgurlone}
+              style={styles.modalImage}
+              resizeMode="contain"
+            />
+            <ProgressBarAndroid
+              styleAttr="Horizontal"
+              indeterminate={false}
+              progress={progressvalue}
+              color={COLOR_PRIMARY}
+            />
+
+            <Text style={styles.progressText}>{}</Text>
+            <CustomButton
+              text="Close"
+              onPress={() => {
+                setModalVisibleone(false);
+              }}
+              isFilled
+              isFullWidth={false}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -417,7 +506,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: 200,
     width: '100%',
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   cardText: {
     flex: 1,
@@ -428,10 +517,42 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     marginBottom: 5,
-    color: "#A8A8A8"
+    color: '#A8A8A8',
   },
   cardSubtitle: {
     fontSize: 14,
-    fontWeight: "bold"
+    fontWeight: 'bold',
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
+  modalContent: {
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalImage: {
+    width: 200,
+    height: 200,
+  },
+  progressBar: {
+    width: '100%',
+    marginTop: 20,
+  },
+  progressText: {
+    marginTop: 10,
+  },
+  modalCloseButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    fontSize: 24,
+    color: 'white',
   },
 });

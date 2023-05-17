@@ -108,6 +108,7 @@ const compaign = (props) => {
         justifyContent: 'space-between',
         flexDirection: 'row',
         padding: 5,
+        alignItems:"center"
       }}>
         <TouchableOpacity onPress={() => {
           navigation.goBack();
@@ -195,7 +196,7 @@ const compaign = (props) => {
               justifyContent: 'space-between',
               paddingVertical: 8
             }}>
-            <Text style={{ color: 'black' }}>Target:$800,000</Text>
+            <Text style={styles.text}>Target:$800,000</Text>
             <Text
               style={{
                 color: '#4E148C',
@@ -222,9 +223,7 @@ const compaign = (props) => {
             }}>
             About Compaign
           </Text>
-          <Text style={{
-            color: "black"
-          }}>
+          <Text style={styles.text}>
             Lorem ipsum dolor sit amet consectetur. Justo nunc egestas pretium
             tortor ullamcorper eget leo auctor. Ipsum nibh tincidunt dui
             tincidunt. Viverra sed pulvinar potenti vel nibh phasellus fermentum
@@ -258,4 +257,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 3,
   },
+  text: {
+    fontFamily: 'Poppins',
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: 14,
+    lineHeight: 21,
+    // textAlign: "center",
+    color: "#000",
+    // alignItems:"center",
+},
 });

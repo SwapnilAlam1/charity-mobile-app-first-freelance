@@ -178,8 +178,12 @@ const Events = () => {
         justifyContent: 'space-between',
         flexDirection: 'row',
         padding: 5,
+        alignItems:"center"
+
       }}>
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity
+        
+        onPress={() => {
           navigation.goBack();
         }}>
           <Image source={notificationicon} />
