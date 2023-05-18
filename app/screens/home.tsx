@@ -21,6 +21,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import CustomTextInput from '../components/input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomButton from '../components/button';
+import { useNavigation } from '@react-navigation/native';
 
 const cardData = [
   {
@@ -68,11 +69,16 @@ const categorycardData = [
 ];
 
 const Card = ({item}) => {
+  const navigation=useNavigation()
   return (
     <View style={styles.cardContainer}>
       <Image style={styles.cardImage} source={item.image} />
       <Text style={styles.textTopLeft}>{item.textTopLeft}</Text>
+      <TouchableOpacity onPress={()=>{
+navigation.navigate("donationmethod")
+      }}>
       <Text style={styles.textBottomLeft}>{item.textBottomLeft}</Text>
+      </TouchableOpacity>
       <Text style={styles.textBottomRight}>{item.textBottomRight}</Text>
       <Text style={styles.textBottomRight1}>{item.textBottomRight1}</Text>
       <Text style={styles.textBottomRight2}>{item.textBottomRight2}</Text>

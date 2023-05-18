@@ -6,8 +6,9 @@ import {
   View,
   ProgressBarAndroid,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
 import logo from '../assets/images/logo.png';
 import profile from '../assets/images/profile.png';
@@ -21,6 +22,7 @@ import CustomTextInput from '../components/input';
 import backicon from '../assets/images/noti.png';
 import notificationicon from '../assets/images/backscreen.png';
 import { useNavigation } from '@react-navigation/native';
+import CustomButton from '../components/button';
 
 const cardData = [
   {
@@ -95,22 +97,22 @@ const categorycardData = [
   {
     id: 1,
     image: require('../assets/images/spons1.png'),
-    textTopLeft: 'All',
+    textTopLeft: '',
   },
   {
     id: 1,
     image: require('../assets/images/spons2.png'),
-    textTopLeft: 'Animals',
+    textTopLeft: '',
   },
   {
     id: 1,
     image: require('../assets/images/spons3.png'),
-    textTopLeft: 'Children',
+    textTopLeft: '',
   },
   {
     id: 1,
     image: require('../assets/images/spons4.png'),
-    textTopLeft: 'Education',
+    textTopLeft: '',
   },
 ];
 
@@ -165,6 +167,11 @@ const CategoryCard = ({ item }) => {
 
 const Events = () => {
   const navigation = useNavigation();
+  const [modalVisibleone, setModalVisibleone] = useState(false);
+  const [Textvalueone, setTextvalueone] = useState(null);
+  const [imgurlone, setimgurlone] = useState(null);
+
+
   return (
     <View
       style={{
@@ -241,7 +248,13 @@ const Events = () => {
               showsHorizontalScrollIndicator={false}
             >
               {categorycardData.map(item => (
+                <TouchableOpacity onPress={()=>{
+                  setimgurlone(item.image);
+                  setTextvalueone(item.textTopLeft)
+                  setModalVisibleone(true)
+                }}>
                 <CategoryCard key={item.id} item={item} />
+                </TouchableOpacity>
               ))}
             </ScrollView>
           </View>
@@ -256,7 +269,13 @@ const Events = () => {
             showsHorizontalScrollIndicator={false}
           >
             {cardData2.map(item => (
+               <TouchableOpacity onPress={()=>{
+                setimgurlone(item.image);
+                setTextvalueone(item.textTopLeft)
+                setModalVisibleone(true)
+              }}>
               <Card key={item.id} item={item} />
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
@@ -270,11 +289,56 @@ const Events = () => {
             showsHorizontalScrollIndicator={false}
           >
             {cardData3.map(item => (
+                <TouchableOpacity onPress={()=>{
+                  setimgurlone(item.image);
+                  setTextvalueone(item.textTopLeft)
+                  setModalVisibleone(true)
+                }}>
               <Card key={item.id} item={item} />
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
       </ScrollView>
+
+
+
+      <Modal visible={modalVisibleone} animationType="fade" transparent={true}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={{fontWeight: 'bold', fontSize: 20,
+          marginBottom:4
+          }}>{Textvalueone}</Text>
+            <Image
+              source={imgurlone}
+              style={styles.modalImage}
+              resizeMode="contain"
+            />
+            {/* <ProgressBarAndroid
+              styleAttr="Horizontal"
+              indeterminate={false}
+              progress={progressvalue}
+              color={COLOR_PRIMARY}
+            /> */}
+
+            <Text style={styles.progressText}>{}</Text>
+            <CustomButton
+              text="Close"
+              onPress={() => {
+                setModalVisibleone(false);
+              }}
+              isFilled
+              isFullWidth={false}
+            />
+          </View>
+        </View>
+      </Modal>
+
+
+
+
+
+
     </View>
   );
 };
@@ -392,5 +456,46 @@ const styles = StyleSheet.create({
   cardSubtitle: {
     fontSize: 14,
     fontWeight: "bold"
+  },
+
+
+
+
+
+
+
+
+
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
+  modalContent: {
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalImage: {
+    width: 200,
+    height: 200,
+  },
+  progressBar: {
+    width: '100%',
+    marginTop: 20,
+  },
+  progressText: {
+    marginTop: 10,
+  },
+  modalCloseButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    fontSize: 24,
+    color: 'white',
   },
 });
