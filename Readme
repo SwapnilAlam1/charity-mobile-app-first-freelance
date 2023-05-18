@@ -1,0 +1,5 @@
+first of all open the terminal and Write npm install 
+it it gives error than hit npm install --force
+after that run npx react-native start
+when metro is open than open new terminal keep the metro running 
+than hit npx react-native run-android on Virtual device or real device
