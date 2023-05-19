@@ -1,5 +1,28 @@
+# Charity App
+
+## Instructions on how to install and set up the project
+
 first of all open the terminal and Write npm install 
-it it gives error than hit npm install --force
+if it gives error than hit npm install --force
 after that run npx react-native start
 when metro is open than open new terminal keep the metro running 
 than hit npx react-native run-android on Virtual device or real device
+
+## Testing
+
+To run the tests for the project, follow these steps:
+
+1. Make sure you have all the required dependencies installed by running `npm install` or `yarn install`.
+2. Execute the command `npm test` or `yarn test` to run the test suite.
+3. The tests will be executed, and you should see the test results in the console.
+
+[Optionally, provide additional information or instructions on running specific test suites or individual tests, if applicable]
+
+## Contributing
+
+[Guidelines for contributing to the project, including instructions for submitting pull requests and reporting issues]
+
+## License
+
+[Specify the license under which the project is released]
+
