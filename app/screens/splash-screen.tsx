@@ -89,7 +89,7 @@ const SplashScreen = (props) => {
                     <View style={{ alignItems: "center" }}>
                         <CustomButton text="Get Started"
                             onPress={() => {
-                                props.navigation.navigate(ROUTES_NAMES.home)
+                                props.navigation.navigate(ROUTES_NAMES.signup)
 
                             }}
 

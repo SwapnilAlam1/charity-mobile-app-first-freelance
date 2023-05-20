@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   Image,
   ScrollView,
@@ -21,11 +21,14 @@ import logIcon from '../assets/images/logSet.png';
 import {useNavigation} from '@react-navigation/native';
 import Myimage from '../assets/images/MyProfilee.png';
 import RightArrow from '../assets/images/rightArr.png';
+import AppContext from '../context/AppContext';
 // import ImagePicker from 'react-native-image-picker';
 
 
 const Profile = (props) => {
   const navigation = useNavigation();
+  const context =useContext(AppContext);
+  const {userinfo}=context
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
@@ -89,15 +92,15 @@ const Profile = (props) => {
             alignItems: 'center',
             marginTop: '10%',
           }}>
-          <Image source={Myimage} style={{height: 150, width: 150}} />
+          <Image source={Myimage} style={{height: 150, width: 150,borderRadius:70}} />
         </TouchableOpacity>
         <View style={{marginTop: '3%'}}>
           <Text
             style={{color: 'black', fontWeight: 'bold', textAlign: 'center'}}>
-            Katherine Foster
+            {userinfo[0].FirstName} {userinfo[0].LastName} 
           </Text>
           <Text style={{color: 'black', textAlign: 'center'}}>
-            Katherine1989@test.com
+          {userinfo[0].Email}
           </Text>
         </View>
 

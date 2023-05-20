@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { ScrollView, Text, TouchableOpacity, View } from "react-native"
 import CustomButton from "../components/button";
 import CustomTextInput from "../components/input";
@@ -8,12 +8,68 @@ import Google from "../assets/images/Google.png";
 import Facebook from "../assets/images/facebook.png";
 import Twitter from "../assets/images/twitter.png";
 import MyCustomButton from "../components/CustomButton";
+import AppContext from "../context/AppContext";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 const SignUp = (props) => {
-    const [email, setEmail] = useState("")
+    const context =useContext(AppContext);
+    const {setuserinfo,userinfo}=context
+    
+    const [email, setEmail] = useState(null)
     const [emailError, setEmailError] = useState("")
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState(null)
+    const [firstName, setfirstName] = useState(null)
+    const [lastName, setlastName] = useState(null)
     const [genderMale, setGender] = useState(true)
+
+    useEffect(()=>{
+        console.log(userinfo,"infooo");
+        
+
+    },[userinfo])
+
+    const accountCreated=()=>{
+        let count=0
+        if(email==null){
+            count++
+
+        }
+        if(password==null){
+            count++
+
+        }
+        if(firstName==null){
+            count++
+
+        }
+        if(lastName==null){
+            count++
+
+        }
+        if(count>0){
+            Toast.show({
+                type: 'error',
+                text1: 'Error',
+                text2: "please enter all the fields",
+            }); 
+
+        }else{
+            let data ={Email:email,Password:password,FirstName:firstName,LastName:lastName}
+            setuserinfo((pre)=>{
+                return([...pre,data])
+                })
+                Toast.show({
+                    type: 'success',
+                    text1: 'Success',
+                    text2: "Signed up successfully",
+                });
+                props.navigation.navigate(ROUTES_NAMES.login)
+
+
+        }
+     
+        
+    }
 
     return (<>
         <View style={{
@@ -49,19 +105,19 @@ const SignUp = (props) => {
                 <View style={{ paddingHorizontal: "8%", marginTop: "7%" }}>
                     < CustomTextInput
                         placeholder="First Name"
-                        value={email}
+                        value={firstName}
                         title="Enter Email"
-                        onChangeText={(value: any) => { setEmail(value) }}
-                        errorMessage={emailError}
+                        onChangeText={(value: any) => { setfirstName(value) }}
+                        // errorMessage={emailError}
                         leftAlign={true}
                     />
 
                     <View style={{ marginTop: "2%" }}>
                         < CustomTextInput
                             placeholder="Last Name"
-                            value={email}
+                            value={lastName}
                             title="Enter Email"
-                            onChangeText={(value: any) => { setEmail(value) }}
+                            onChangeText={(value: any) => { setlastName(value) }}
                             errorMessage={emailError}
                             leftAlign={true}
                         />
@@ -171,6 +227,16 @@ const SignUp = (props) => {
                             leftAlign={true}
                         />
                     </View>
+                    <View style={{ marginTop: "8%" }}>
+                        < CustomTextInput
+                            placeholder="password"
+                            value={password}
+                            title="Enter Email"
+                            onChangeText={(value: any) => { setPassword(value) }}
+                            errorMessage={emailError}
+                            leftAlign={true}
+                        />
+                    </View>
                     <View style={{ marginTop: "2%" }}>
                         <PhoneInput />
                     </View>
@@ -186,6 +252,10 @@ const SignUp = (props) => {
                         </Text>
                     </View>
 
+                    <CustomButton isFilled isFullWidth={true} text="Sign Up" onPress={() => {
+                        // props.navigation.navigate(ROUTES_NAMES.otp)
+                        accountCreated()
+                    }} />
                     <CustomButton isFilled isFullWidth={true} text="Get OTP" onPress={() => {
                         props.navigation.navigate(ROUTES_NAMES.otp)
                     }} />

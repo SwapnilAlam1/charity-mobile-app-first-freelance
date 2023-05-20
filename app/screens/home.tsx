@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 
 import logo from '../assets/images/logo.png';
-import profile from '../assets/images/profile.png';
+import profile from '../assets/images/MyProfilee.png';
 import drawer from '../assets/images/drawer.png';
 import notification from '../assets/images/noti.png';
 import search from '../assets/images/search.png';
@@ -22,6 +22,7 @@ import CustomTextInput from '../components/input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import CustomButton from '../components/button';
 import { useNavigation } from '@react-navigation/native';
+import AppContext from '../context/AppContext';
 
 const cardData = [
   {
@@ -123,6 +124,8 @@ const CategoryCard = ({item}) => {
 };
 
 const home = props => {
+  const context =useContext(AppContext);
+  const {userinfo}=context
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVisibleone, setModalVisibleone] = useState(false);
   const [imgurl, setimgurl] = useState(null);
@@ -149,14 +152,18 @@ const home = props => {
             props.navigation.navigate('Profile');
           }}
           style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Image source={profile} />
+          <Image source={profile} style={{
+            height:"95%",
+            width:"30%",
+            borderRadius:55
+          }}/>
           <View
             style={{
               flexDirection: 'column',
               alignItems: 'center',
               paddingLeft: 5,
             }}>
-            <Text style={{fontWeight: '600', fontSize: 12}}>Hi Katherine</Text>
+            <Text style={{fontWeight: '600', fontSize: 12}}>Hi {userinfo[0].FirstName}</Text>
             <Text style={{fontWeight: '600', fontSize: 12}}>Welcome</Text>
           </View>
         </TouchableOpacity>
