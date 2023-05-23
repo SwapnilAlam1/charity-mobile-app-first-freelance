@@ -27,7 +27,7 @@ import {
 import MyStack from './app/main-navigator';
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
-
+import { AppProvider } from './app/context/AppContext';
 
 
 
@@ -71,8 +71,10 @@ function App(): JSX.Element {
   return (
     <>
       {/* <Text>assjdghj</Text> */}
+      <AppProvider>
       <MyStack/>
       <Toast />
+      </AppProvider>
 
     </>
   );

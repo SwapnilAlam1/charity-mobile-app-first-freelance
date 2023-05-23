@@ -1,5 +1,5 @@
-import React from "react"
-import { Text, TouchableOpacity, View } from "react-native"
+import React, { useContext, useEffect, useState } from "react"
+import { ScrollView, Text, TouchableOpacity, View } from "react-native"
 import CustomButton from "../components/button";
 import { ROUTES_NAMES } from "../utils/constants";
 import PhoneInput from "../components/phoneInput";
@@ -9,12 +9,65 @@ import Twitter from "../assets/images/twitter.png";
 
 
 import MyCustomButton from "../components/CustomButton";
+import CustomTextInput from "../components/input";
+import AppContext from "../context/AppContext";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 
 const Login = (props) => {
+    const [email, setEmail] = useState(null)
+    const [emailError, setEmailError] = useState("")
+    const [password, setPassword] = useState(null)
+
+    const context =useContext(AppContext);
+    const {setuserinfo,userinfo}=context
+
+
+    
+    useEffect(()=>{
+        console.log(userinfo,"login");
+        
+
+    },[userinfo])
+
+    const signin=()=>{
+        if(userinfo.length>0){
+
+
+        for (let i = 0; i < userinfo.length; i++) {
+            if(userinfo[i].Email==email && userinfo[i].Password==password){
+                props.navigation.navigate(ROUTES_NAMES.home);
+                Toast.show({
+                    type: 'success',
+                    text1: 'Success',
+                    text2: "Login successfully",
+                });
+
+
+            }else{
+                Toast.show({
+                    type: 'error',
+                    text1: 'error',
+                    text2: "wrong email or password",
+                });
+
+            }
+            
+        }
+    }else{
+        Toast.show({
+            type: 'error',
+            text1: 'error',
+            text2: "wrong email or password",
+        });
+
+    }
+
+    }
+
 
     return (<>
-        <View style={{
+        <ScrollView style={{
             flex: 1,
             backgroundColor: "white"
 
@@ -38,12 +91,37 @@ const Login = (props) => {
                 </Text>
             </View>
             <View style={{ paddingHorizontal: "8%", marginTop: "7%" }}>
+            <View >
+                        < CustomTextInput
+                            placeholder="Email"
+                            value={email}
+                            title="Enter Email"
+                            onChangeText={(value: any) => { setEmail(value) }}
+                            errorMessage={emailError}
+                            leftAlign={true}
+                        />
+                    </View>
+                    <View >
+                        < CustomTextInput
+                            placeholder="password"
+                            value={password}
+                            title="Enter Email"
+                            onChangeText={(value: any) => { setPassword(value) }}
+                            errorMessage={emailError}
+                            leftAlign={true}
+                        />
+                    </View>
                 <PhoneInput />
-                <CustomButton isFilled isFullWidth={true} text="Get OTP" onPress={() => {
+                <CustomButton isFilled isFullWidth={true} text="Login" onPress={() => {
+
+                    signin()
+
+                }} />
+                {/* <CustomButton isFilled isFullWidth={true} text="Get OTP" onPress={() => {
 
                     props.navigation.navigate(ROUTES_NAMES.otp)
 
-                }} />
+                }} /> */}
                 <View style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", marginTop: "15%" }}>
                     <View style={{ borderBottomWidth: 1, borderColor: "#A9A9A9", width: "40%" }}>
                     </View>
@@ -78,7 +156,7 @@ const Login = (props) => {
 
                 </View>
             </View>
-        </View>
+        </ScrollView>
 
 
 
